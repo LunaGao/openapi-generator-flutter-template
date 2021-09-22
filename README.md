@@ -1,0 +1,1 @@
+# openapi-generator-flutter-template
