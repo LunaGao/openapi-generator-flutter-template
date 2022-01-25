@@ -78,7 +78,6 @@ class ApiClient {
     headerParams.addAll(_defaultHeaderMap);
 
     final urlEncodedQueryParams = queryParams
-      .where((param) => param.value != null)
       .map((param) => '$param');
 
     final queryString = urlEncodedQueryParams.isNotEmpty
@@ -201,7 +200,6 @@ class ApiClient {
           }
           final valueString = '$value'.toLowerCase();
           return valueString == 'true' || valueString == '1';
-          break;
         case 'double':
           return value is double ? value : double.parse('$value');
         {{#models}}
@@ -283,4 +281,4 @@ Future<dynamic> deserializeAsync(DeserializationMessage message) async {
 {{/native_serialization}}
 
 /// Primarily intended for use in an isolate.
-Future<String> serializeAsync(Object value) async => value == null ? '' : json.encode(value);
+Future<String> serializeAsync(Object value) async => json.encode(value);
